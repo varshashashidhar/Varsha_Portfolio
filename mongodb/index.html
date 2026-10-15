@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Varsha Shashidhar, Product Manager</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Varsha Shashidhar: application portfolio for MongoDB's Product Manager, Internal Financial Data role, with a financial data case study and interactive prototype.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#case-study">Skip to case study</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-name"><span class="nav-mark" aria-hidden="true"></span>Varsha Shashidhar</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#case-study">Case study</a></li>
+      <li><a href="#prototype">Prototype</a></li>
+      <li><a href="#why-mongodb">Why MongoDB</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="assets/Varsha_Shashidhar_Resume.pdf" class="nav-cta" download>Resume</a></li>
+    </ul>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <h1>I turn messy financial data into <em>products</em> Finance can <em>trust</em>.</h1>
+    <p class="hero-sub">I'm Varsha Shashidhar, a Finance and Data Science student at UT Austin. At JPMorgan, I turned a manual banker workflow into an agentic AI tool and structured 300+ deals into machine-readable data. Below is how I'd help MongoDB's Finance team forecast Atlas consumption from data they can trust, with a prototype you can click through.</p>
+    <div class="hero-cta">
+      <a href="#case-study" class="btn btn-primary">Read the case study <span aria-hidden="true">→</span></a>
+      <a href="#prototype" class="btn btn-secondary">Try the prototype</a>
+      <a href="https://www.linkedin.com/in/varsha-shashidhar" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+
+    <dl class="stats">
+      <div class="stat">
+        <dt>83%</dt>
+        <dd>faster banker deal task after I designed an agentic AI workflow at JPMorgan (~2 hrs → 20 min)</dd>
+      </div>
+      <div class="stat">
+        <dt>300+</dt>
+        <dd>deals structured into machine-readable records to improve data accuracy and compliance</dd>
+      </div>
+      <div class="stat">
+        <dt>−30%</dt>
+        <dd>analysis time per participant after I built a reusable Python data pipeline</dd>
+      </div>
+      <div class="stat">
+        <dt>−12%</dt>
+        <dd>operating expenses from a vendor pricing and cost-benefit analysis</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== CASE STUDY ===================== -->
+  <section class="section" id="case-study">
+    <div class="section-inner wide">
+      <div class="cs-header">
+        <p class="kicker">Case study · Atlas consumption forecasting</p>
+        <h2 class="display">Forecasting Atlas from one trusted number</h2>
+        <p class="lede">Atlas revenue follows how much customers actually use across AWS, Google Cloud, and Azure. That makes the Atlas consumption forecast one of the most important numbers MongoDB's Finance team produces, and one of the hardest to assemble when usage, commitments, credits, and marketplace billing each live in a different place.</p>
+      </div>
+
+      <div class="tldr">
+        <div class="tldr-item">
+          <span class="tldr-label">Problem</span>
+          <p>FP&amp;A builds the Atlas forecast from manual pulls of usage, commitment drawdowns, credits, and marketplace billing. Each pull defines revenue a little differently, so a growing share of every cycle goes to reconciling sources instead of explaining <em>why</em> consumption moved.</p>
+        </div>
+        <div class="tldr-item">
+          <span class="tldr-label">Bet</span>
+          <p>Publish certified, near-real-time consumption datasets in the lakehouse, let analysts flag a mismatch from inside their forecast model, and feed AI-driven forecasts only from certified inputs, broken down by cloud, region, and cluster tier.</p>
+        </div>
+        <div class="tldr-item">
+          <span class="tldr-label">How we'd know</span>
+          <p>A higher share of forecast inputs from certified data, fewer manual pulls per cycle, faster time from a flagged mismatch to a certified fix, and lower forecast error against actual Atlas consumption.</p>
+        </div>
+      </div>
+
+      <div class="cs-body">
+        <aside class="cs-toc" aria-label="Case study sections">
+          <ol>
+            <li><a href="#cs-context">Context</a></li>
+            <li><a href="#cs-problem">Problem &amp; users</a></li>
+            <li><a href="#cs-why-now">Why now</a></li>
+            <li><a href="#prototype">Solution &amp; prototype</a></li>
+            <li><a href="#cs-metrics">Metrics</a></li>
+            <li><a href="#cs-rollout">Rollout</a></li>
+            <li><a href="#cs-risks">Risks &amp; open questions</a></li>
+          </ol>
+        </aside>
+
+        <div class="cs-content">
+          <article class="cs-block" id="cs-context">
+            <span class="cs-num">01</span>
+            <h3>Context</h3>
+            <p>Atlas is billed on usage. What a customer pays depends on the cluster tiers they run, the clouds and regions they deploy in, and how their annual commitment and credits are drawn down. Some customers buy through the AWS, Google Cloud, or Azure marketplaces, which report on their own schedules. The Internal Data team turns that high-volume consumption data into the datasets, dashboards, and APIs Finance uses for planning, forecasting, and spend efficiency. I'm assuming a lakehouse with medallion layers, as the role describes: raw usage events land in bronze, get cleaned and joined to contracts in silver, and become certified financial tables in gold.</p>
+          </article>
+
+          <article class="cs-block" id="cs-problem">
+            <span class="cs-num">02</span>
+            <h3>Problem &amp; users</h3>
+            <p>Consumption changes every day, so Finance can't wait for month-end close to see the trend. When certified data is late, hard to find, or doesn't break out what an analyst needs, they pull it themselves, and each pull makes its own choices: invoice date or usage date for credits, gross or net of marketplace fees, which exchange rate. The forecast still gets done. But every cycle starts with a reconciliation, and the reason each number differs never reaches the team that owns the data.</p>
+
+            <div class="personas">
+              <div class="persona" style="--c: var(--leaf)">
+                <span class="persona-role">FP&amp;A analyst</span>
+                <p class="persona-need">"Guidance prep starts <em>Monday</em>. My Atlas pull and the Finance dashboard are $1.3M apart for September, and I don't know which one leadership has seen."</p>
+                <p class="persona-pain">Pain: deadline pressure, and no fast way to know which number is right.</p>
+              </div>
+              <div class="persona" style="--c: var(--sky)">
+                <span class="persona-role">Finance leader</span>
+                <p class="persona-need">"If Atlas consumption slows in a region, I need to see it within days, and trust the number I'm explaining."</p>
+                <p class="persona-pain">Pain: trends show up late, and reviews start with reconciliation.</p>
+              </div>
+              <div class="persona" style="--c: var(--violet)">
+                <span class="persona-role">Data engineer</span>
+                <p class="persona-need">"I learn a definition drifted when two reports disagree in a leadership review."</p>
+                <p class="persona-pain">Pain: reactive fixes, with no ranked view of what Finance needs most.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="cs-block" id="cs-why-now">
+            <span class="cs-num">03</span>
+            <h3>Why now</h3>
+            <ul class="checks">
+              <li><strong>Atlas consumption shapes guidance.</strong> Consumption trends are a regular part of how MongoDB explains its results. The sooner Finance sees a shift by cloud, region, or segment, and the more it trusts that number, the better the forecast behind those conversations.</li>
+              <li><strong>AI forecasting needs one definition first.</strong> The role's goal is automated, AI-driven forecasting. A model trained on three versions of consumption revenue learns all three, so certification has to come before automation.</li>
+              <li><strong>Data volume and SOX keep growing.</strong> As a public company with a fast-growing financial data footprint, every manual pull is a control risk as well as a time cost.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROTOTYPE ===================== -->
+  <section class="section section-canvas" id="prototype">
+    <div class="section-inner wide">
+      <div class="cs-header">
+        <p class="kicker"><span class="cs-num inline">04</span> Solution &amp; interactive prototype</p>
+        <h2 class="display sm">Follow one number from flag to forecast</h2>
+        <p class="lede">An analyst preparing the Atlas forecast finds a $1.3M gap. Flag it, then switch roles to see how the data product owner and the data engineer close the loop. Data shown is illustrative.</p>
+      </div>
+
+      <div class="proto" id="proto">
+        <div class="proto-tabs" role="tablist" aria-label="Prototype roles">
+          <button role="tab" class="proto-tab active" aria-selected="true" aria-controls="pane-analyst" id="tab-analyst" data-pane="analyst">
+            <span class="tab-dot" style="background: var(--leaf)"></span>FP&amp;A analyst
+          </button>
+          <button role="tab" class="proto-tab" aria-selected="false" aria-controls="pane-owner" id="tab-owner" data-pane="owner">
+            <span class="tab-dot" style="background: var(--sky)"></span>Data product owner <span class="badge" id="gapBadge" hidden>1</span>
+          </button>
+          <button role="tab" class="proto-tab" aria-selected="false" aria-controls="pane-engineer" id="tab-engineer" data-pane="engineer">
+            <span class="tab-dot" style="background: var(--violet)"></span>Data engineer
+          </button>
+          <button class="proto-reset" id="protoReset" type="button">Reset</button>
+        </div>
+
+        <!-- Analyst -->
+        <div class="proto-pane active" role="tabpanel" id="pane-analyst" aria-labelledby="tab-analyst">
+          <div class="app">
+            <div class="app-layers">
+              <p class="app-title">Sources</p>
+              <ul>
+                <li class="layer">▤ Q3 Atlas forecast</li>
+                <li class="layer indent"><span class="src-icon">Σ</span> Commitments</li>
+                <li class="layer indent selected" id="layerName"><span class="src-icon">Σ</span> Atlas usage (export)</li>
+                <li class="layer indent"><span class="src-icon">Σ</span> Marketplace billing</li>
+              </ul>
+            </div>
+            <div class="app-canvas">
+              <div class="frame">
+                <span class="frame-label">Q3 Atlas forecast / Actuals</span>
+                <div class="sheet">
+                  <p class="sheet-h">Atlas consumption revenue</p>
+                  <p class="sheet-sub">September · AWS, Google Cloud, Azure · USD</p>
+                  <div class="num-row">
+                    <span class="lbl">Finance dashboard</span><span class="val">$48.2M</span>
+                    <span class="num-bar"><i style="width: 100%"></i></span>
+                  </div>
+                  <div class="num-row mine">
+                    <span class="lbl">My forecast model</span><span class="val" id="modelVal">$46.9M</span>
+                    <span class="num-bar model" id="modelBar"><i style="width: 97.3%"></i></span>
+                  </div>
+                  <span class="delta" id="deltaChip">Δ $1.3M unexplained</span>
+                </div>
+              </div>
+            </div>
+            <div class="app-props">
+              <p class="app-title" id="propsTitle">Source</p>
+              <div class="prop"><span>Dataset</span><strong id="propDataset">Manual export</strong></div>
+              <div class="prop"><span>Refreshed</span><strong class="muted" id="propFresh">6 days ago</strong></div>
+              <div class="prop"><span>Certified</span><strong class="warn" id="propCert">No</strong></div>
+              <p class="start-hint" id="startHint">Start here ↓</p>
+              <button class="action-btn" id="flagBtn" type="button">Flag mismatch <kbd>⌥⌘M</kbd></button>
+
+              <div class="popover" id="popover" hidden>
+                <p class="pop-title">What looks wrong?</p>
+                <p class="pop-sub">Optional. Sends a signal to the Internal Data team with lineage attached.</p>
+                <div class="chips" id="reasonChips">
+                  <button type="button" class="chip" data-reason="Numbers don't match">Numbers don't match</button>
+                  <button type="button" class="chip" data-reason="Data looks stale">Data looks stale</button>
+                  <button type="button" class="chip" data-reason="Definition unclear">Definition unclear</button>
+                  <button type="button" class="chip" data-reason="Missing field">Missing field</button>
+                </div>
+                <div class="pop-actions">
+                  <button type="button" class="link-btn" id="skipBtn">Skip and flag</button>
+                </div>
+              </div>
+
+              <p class="toast" id="toast" role="status" hidden></p>
+            </div>
+          </div>
+          <p class="proto-note"><strong>Design choice:</strong> the flag lives inside the forecast model, where the analyst notices the gap. It sends both numbers and their lineage, so the analyst can keep preparing for guidance while the data team investigates.</p>
+        </div>
+
+        <!-- Owner -->
+        <div class="proto-pane" role="tabpanel" id="pane-owner" aria-labelledby="tab-owner" hidden>
+          <div class="owner">
+            <div class="owner-list">
+              <div class="owner-head">
+                <p class="app-title">Trust issues · Finance data</p>
+                <span class="muted small">Last 30 days</span>
+              </div>
+              <ul id="gapList"></ul>
+            </div>
+            <div class="owner-detail" id="ownerDetail">
+              <p class="app-title">Top issue</p>
+              <h4 id="gapTitle">Atlas consumption (daily)</h4>
+              <p class="muted small" id="gapMeta"></p>
+              <div class="insight">
+                <span class="insight-label">Root cause</span>
+                <p></p>
+              </div>
+              <div class="insight ai">
+                <span class="insight-label">✦ AI-drafted fix</span>
+                <p></p>
+              </div>
+              <div class="owner-actions">
+                <button type="button" class="btn btn-primary small" id="publishBtn">Review &amp; certify</button>
+                <button type="button" class="btn btn-ghost small">Dismiss</button>
+              </div>
+              <p class="toast inline" id="publishToast" role="status" hidden></p>
+            </div>
+          </div>
+          <p class="proto-note"><strong>Design choice:</strong> issues are ranked by how many Finance reports and forecasts they touch, so this queue doubles as the data product roadmap. AI drafts the root cause from lineage and diffs, and a person certifies every change, which leaves an audit trail for SOX.</p>
+        </div>
+
+        <!-- Engineer -->
+        <div class="proto-pane" role="tabpanel" id="pane-engineer" aria-labelledby="tab-engineer" hidden>
+          <div class="dev">
+            <div class="dev-inspect">
+              <p class="app-title">Lineage</p>
+              <div class="dev-warn" id="devWarn">
+                <strong id="devWarnTitle">Open trust issue.</strong> <span id="devWarnText">Flagged by FP&amp;A on <code>fin.atlas_consumption</code>. Reason: Numbers don't match.</span>
+              </div>
+              <div class="lineage" aria-label="Medallion lineage">
+                <span class="tier bronze">atlas.usage_events</span><span class="arrow">→</span>
+                <span class="tier silver">atlas.cluster_usage_daily</span><span class="arrow">→</span>
+                <span class="tier gold">fin.atlas_consumption</span>
+              </div>
+              <div class="prop"><span>Tests</span><strong id="devTests">41 of 42 passing</strong></div>
+              <div class="prop"><span>Reconciles to invoiced billing</span><strong class="warn" id="devRecon">Off by 2.7%</strong></div>
+              <div class="prop"><span>Downstream reports &amp; forecasts</span><strong>11</strong></div>
+              <div class="prop"><span>SOX scope</span><strong>Yes · changes logged</strong></div>
+            </div>
+            <div class="dev-code">
+              <div class="code-head"><span>Aggregation pipeline · gold step</span><button type="button" class="link-btn" id="copyBtn">Copy</button></div>
+<pre><code id="codeSnippet"><span class="at">db</span>.<span class="at">cluster_usage_daily</span>.<span class="tk">aggregate</span>([
+  { <span class="tk">$match</span>: { <span class="at">usageDate</span>: { <span class="tk">$gte</span>: <span class="st">ISODate("2026-09-01")</span> } } },
+  { <span class="tk">$group</span>: {
+      <span class="at">_id</span>: { <span class="at">day</span>: <span class="st">"$usageDate"</span>, <span class="at">account</span>: <span class="st">"$accountId"</span>,
+             <span class="at">cloud</span>: <span class="st">"$cloudProvider"</span> },
+      <span class="at">grossUsage</span>: { <span class="tk">$sum</span>: <span class="st">"$usageAmount"</span> },
+      <span class="at">credits</span>:    { <span class="tk">$sum</span>: <span class="st">"$creditAmount"</span> }  <span class="cm">// applied at usage date</span>
+  } },
+  { <span class="tk">$set</span>: { <span class="at">consumptionRevenue</span>:
+      { <span class="tk">$subtract</span>: [<span class="st">"$grossUsage"</span>, <span class="st">"$credits"</span>] } } },
+  { <span class="tk">$merge</span>: { <span class="at">into</span>: <span class="st">"fin_atlas_consumption"</span>, <span class="at">whenMatched</span>: <span class="st">"replace"</span> } }
+])</code></pre>
+            </div>
+          </div>
+          <p class="proto-note"><strong>Design choice:</strong> the engineer gets the flag with both numbers, the lineage, and the failing reconciliation check, so the definition is fixed once in the gold step. I wrote that step as a MongoDB aggregation pipeline to show the logic; in a lakehouse it would be the equivalent SQL or Spark job.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CASE STUDY (cont.) ===================== -->
+  <section class="section" id="cs-rest">
+    <div class="section-inner wide">
+      <div class="cs-body">
+        <div class="cs-toc spacer" aria-hidden="true"></div>
+        <div class="cs-content">
+          <article class="cs-block" id="cs-metrics">
+            <span class="cs-num">05</span>
+            <h3>Metrics</h3>
+            <p class="muted">Hypotheses I'd validate with real baselines before setting targets.</p>
+            <div class="metrics">
+              <div class="metric north">
+                <span class="metric-type">North star</span>
+                <p class="metric-name">Share of Atlas forecast inputs from certified data</p>
+                <p class="metric-desc">Percent of the consumption, commitment, and credit figures in FP&amp;A's Atlas forecast that trace to a certified gold dataset instead of a manual pull. If the loop works, this rises every cycle.</p>
+              </div>
+              <div class="metric">
+                <span class="metric-type">Input</span>
+                <p class="metric-name">Days to see the trend</p>
+                <p class="metric-desc">How many days after usage happens FP&amp;A can see trusted consumption by cloud, region, and tier.</p>
+              </div>
+              <div class="metric">
+                <span class="metric-type">Input</span>
+                <p class="metric-name">Flag → certified time</p>
+                <p class="metric-desc">Median days from a recurring mismatch to a certified definition.</p>
+              </div>
+              <div class="metric">
+                <span class="metric-type">Outcome</span>
+                <p class="metric-name">Forecast error vs. actual Atlas consumption</p>
+                <p class="metric-desc">Quarterly forecast error, plus analyst hours spent reconciling during guidance prep.</p>
+              </div>
+              <div class="metric guard">
+                <span class="metric-type">Guardrail</span>
+                <p class="metric-name">Finance velocity and controls</p>
+                <p class="metric-desc">Time to deliver the forecast, and SOX control exceptions. The product fails if certification slows guidance prep or weakens controls.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="cs-block" id="cs-rollout">
+            <span class="cs-num">06</span>
+            <h3>Rollout</h3>
+            <ol class="phases">
+              <li>
+                <span class="phase-tag">Phase 1 · Listen</span>
+                <p><strong>Shadow one Atlas forecast cycle.</strong> Sit with FP&amp;A through guidance prep, inventory every manual pull, and rank the definitions that cause the most reconciliation time.</p>
+              </li>
+              <li>
+                <span class="phase-tag">Phase 2 · Certify</span>
+                <p><strong>Certify daily consumption, commitments, and credits.</strong> Publish gold datasets with owners, tests, freshness targets, and reconciliation to invoiced billing. Add one-click flags to the dashboards and spreadsheets FP&amp;A already uses.</p>
+              </li>
+              <li>
+                <span class="phase-tag">Phase 3 · Automate</span>
+                <p><strong>AI-driven Atlas forecasts.</strong> Baseline forecasts by cloud, region, and cluster tier that read only certified data, with AI-drafted explanations of what moved and a person signing off before anything reaches leadership.</p>
+              </li>
+            </ol>
+          </article>
+
+          <article class="cs-block" id="cs-risks">
+            <span class="cs-num">07</span>
+            <h3>Risks &amp; open questions</h3>
+            <div class="two-col">
+              <div>
+                <h4 class="mini">Tradeoffs I'd watch</h4>
+                <ul class="plain">
+                  <li><strong>Marketplace and currency timing.</strong> Show estimates for days the clouds haven't reported yet, clearly labeled, and true them up when billing lands.</li>
+                  <li><strong>Analysts trust their own models.</strong> Meet FP&amp;A in their tools and show the reconciliation, rather than asking them to give up their spreadsheets.</li>
+                  <li><strong>Noisy AI explanations.</strong> Root causes cite lineage and show confidence, and a person certifies every change.</li>
+                  <li><strong>Sensitive data and SOX.</strong> Access follows existing Finance permissions, and each certified metric has one named owner and a logged change history.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="mini">Questions I'd bring to the team</h4>
+                <ul class="plain">
+                  <li>Which definitions cause the most reconciliation during guidance prep today?</li>
+                  <li>How many days behind real usage does FP&amp;A see trusted consumption now?</li>
+                  <li>How much forecast error comes from data quality versus the forecasting model itself?</li>
+                  <li>Could the same certified layer support AR aging and workforce planning next?</li>
+                </ul>
+              </div>
+            </div>
+            <p class="disclaimer">Built from public information about MongoDB and this role's description, plus my own assumptions. Figures are illustrative, and I'd love to pressure-test them with the people who run this data every day.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHY MONGODB ===================== -->
+  <section class="section section-alt" id="why-mongodb">
+    <div class="section-inner">
+      <p class="kicker">Why MongoDB</p>
+      <h2 class="display sm">I've seen what one trusted number is worth.</h2>
+      <div class="prose">
+        <p>At JPMorgan, bankers spent hours on a deal task that was really a data problem, with information scattered across documents no system could read. I mapped where their time went, structured data from 300+ deals into machine-readable records, and designed an agentic AI workflow that cut the task from about two hours to twenty minutes. The lesson stuck with me. AI is only as useful as the data underneath it, and people only adopt a tool when they trust what it tells them.</p>
+        <p>That's why this role stands out to me. I'm studying finance and data science at the same time because I want to work where the two meet, and treating Finance's data as a product is exactly that. Helping MongoDB move Atlas forecasting from manual pulls to automated, AI-driven forecasts built on certified data is the kind of problem I want to build my career on.</p>
+      </div>
+      <div class="fit">
+        <div class="fit-row"><span class="fit-ask">Treat data as a product</span><span class="fit-me">Structured 300+ deals into trusted, machine-readable records; built a reusable Python pipeline that cut analysis time 30%.</span></div>
+        <div class="fit-row"><span class="fit-ask">Partner with Finance on planning and forecasting</span><span class="fit-me">BBA in Finance; built a startup's financial forecast and business plan; evaluated vendor pricing models to cut operating costs 12%.</span></div>
+        <div class="fit-row"><span class="fit-ask">Move from manual workflows to AI</span><span class="fit-me">Designed an agentic AI workflow that cut a manual banker task from ~2 hours to 20 minutes.</span></div>
+        <div class="fit-row"><span class="fit-ask">Prioritize the backlog and drive adoption</span><span class="fit-me">Wrote 20+ engineering-ready tickets weekly with acceptance criteria; led rollout and adoption of a new platform for 35 staff.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section class="section" id="experience">
+    <div class="section-inner">
+      <p class="kicker">Experience</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-meta"><span>2025 – 2026</span><span>New York &amp; Plano</span></div>
+          <div class="tl-body">
+            <h3>JPMorgan Chase</h3>
+            <p class="tl-role">Technical Product Management &amp; Strategy · Product Management Summer Analyst</p>
+            <p>Two summers on two teams. In New York, I designed an agentic AI workflow that cut a manual banker deal task from ~2 hours to 20 minutes (83% faster), structured data from 300+ deals into machine-readable records, and wrote engineering-ready tickets with acceptance criteria every week. In Plano, I authored requirements for 3 product enhancements, supported workforce planning on the Transformations team, and drove product insights that lifted sales 27% across 300+ client setups.</p>
+            <div class="tags"><span>Agentic AI</span><span>Data quality</span><span>Specs &amp; tickets</span><span>Enterprise workflows</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2024 – Now</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>UT Vision, Action &amp; Cognition Lab</h3>
+            <p class="tl-role">Data Analysis Research Assistant</p>
+            <p>Built a reusable Python data pipeline that cut analysis time per participant 30%, and analyze eye-movement data from 150 participants to understand how people use visual cues to make decisions.</p>
+            <div class="tags"><span>Python</span><span>Data pipelines</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2024</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>Viva Day Spa + Med Spa</h3>
+            <p class="tl-role">Analytics Intern</p>
+            <p>Led rollout of a new booking platform for 35 staff, improving scheduling efficiency 40%. Ran 6 Tableau workshops so teams could self-serve their own data, and built a vendor cost-benefit analysis that cut operating expenses 12%.</p>
+            <div class="tags"><span>Tableau</span><span>Adoption</span><span>Cost analysis</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2023 – Now</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>Kendra Scott Women's Entrepreneurial &amp; Leadership Institute</h3>
+            <p class="tl-role">President, Student Board · previously Senior Program Management Associate</p>
+            <p>Lead 300+ members across 10 committees. Launched a consulting initiative that raised member NPS by 20 points, and built the Student Board curriculum as a franchisable model piloted at 2 new universities. Earlier, built a centralized CRM for 10,000+ contacts and grew program attendance 120%.</p>
+            <div class="tags"><span>Leadership</span><span>Operating systems</span><span>Growth</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2024 – 2025</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>Empowering Women Out of Prison</h3>
+            <p class="tl-role">Business Plan Advisor</p>
+            <p>Built an early-stage startup's business plan and financial forecast, with market research across 3 industries and a model projecting 15% year-over-year growth, working directly with justice-involved women on strategies for reentry and financial independence.</p>
+            <div class="tags"><span>Financial modeling</span><span>Forecasting</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2024</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>Texas Convergent</h3>
+            <p class="tl-role">Build Team Product Lead</p>
+            <p>Took a mobile app from Figma prototypes to a working MVP in React Native and Firebase. Ran 15+ user interviews and tested 3 onboarding flows, raising prototype task completion 30% before launch.</p>
+            <div class="tags"><span>User research</span><span>MVP</span><span>React Native</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT + SKILLS ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="kicker">About</p>
+          <div class="prose">
+            <p>I'm a dual-degree student at UT Austin (BBA Finance, BS Informatics in Data Science, May 2027, 3.99 GPA). I keep landing in roles where the real job is translating between people who see the same numbers differently, then building the system that lets them trust one version.</p>
+            <p>Product management is where I want to keep doing that, on purpose: holding the technical detail, the user's workflow, and the business reality at once, and then making a call.</p>
+          </div>
+          <p class="honors">2025 McCombs Distinguished Scholar · 2025 University Honors · 2026 President's Student Employee of the Year Nominee</p>
+        </div>
+        <div class="skills">
+          <div class="skills-group">
+            <h4>Product &amp; data</h4>
+            <div class="pills"><span>Data products</span><span>Metric definitions</span><span>User interviews</span><span>Spec-driven development</span><span>Agile / Scrum</span></div>
+          </div>
+          <div class="skills-group">
+            <h4>Technical</h4>
+            <div class="pills"><span>SQL</span><span>Python</span><span>Power BI</span><span>Tableau</span><span>Claude Code</span><span>Jira</span></div>
+          </div>
+          <div class="skills-group">
+            <h4>Finance</h4>
+            <div class="pills"><span>Financial modeling</span><span>Forecasting</span><span>Excel</span><span>Due diligence</span></div>
+          </div>
+          <div class="skills-group">
+            <h4>Languages</h4>
+            <div class="pills"><span>Kannada</span><span>Hindi</span><span>American Sign Language</span><span>Spanish (basic)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section contact" id="contact">
+    <div class="section-inner contact-inner">
+      <p class="kicker">Contact</p>
+      <h2 class="display sm">Let's talk data products.</h2>
+      <p class="lede center">I'd love to walk through this case study, or hear where I got it wrong.</p>
+      <div class="contact-links">
+        <a href="mailto:varsha.shashidhar2023@gmail.com" class="contact-link">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">varsha.shashidhar2023@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/varsha-shashidhar" class="contact-link" target="_blank" rel="noopener">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">linkedin.com/in/varsha-shashidhar</span>
+        </a>
+        <a href="assets/Varsha_Shashidhar_Resume.pdf" class="contact-link" download>
+          <span class="contact-label">Resume</span>
+          <span class="contact-value">Download PDF</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Varsha Shashidhar · Built for MongoDB's Product Manager, Internal Financial Data role · © 2026</p>
+  <p class="footer-note">An independent application project. Not affiliated with or endorsed by MongoDB.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
