@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Varsha Shashidhar, Data Operations</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Varsha Shashidhar: application portfolio for the Data team role at Thinking Machines, with a data-sourcing case study and interactive prototype.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .owner.wide-left { grid-template-columns: 1.35fr 1fr; }
+  @media (max-width: 720px) { .owner.wide-left { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#case-study">Skip to case study</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-name"><span class="nav-mark" aria-hidden="true"></span>Varsha Shashidhar</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#case-study">Case study</a></li>
+      <li><a href="#prototype">Prototype</a></li>
+      <li><a href="#why-tml">Why Thinking Machines</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="assets/Varsha_Shashidhar_Resume.pdf" class="nav-cta" download>Resume</a></li>
+    </ul>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <h1>I turn open-ended research asks into <em>data that's ready to train on</em>.</h1>
+    <p class="hero-sub">I'm Varsha Shashidhar, a Finance and Data Science student at UT Austin. I own a human-behavior data pipeline end to end in a cognition lab, have sourced and vetted vendors on a budget, and designed an agentic AI workflow at JPMorgan. Below is how I'd take a researcher's request in a brand-new domain from a vague ask to a delivered dataset, with a prototype you can click through.</p>
+    <div class="hero-cta">
+      <a href="#case-study" class="btn btn-primary">Read the case study <span aria-hidden="true">→</span></a>
+      <a href="#prototype" class="btn btn-secondary">Try the prototype</a>
+      <a href="https://www.linkedin.com/in/varsha-shashidhar" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+
+    <dl class="stats">
+      <div class="stat">
+        <dt>150</dt>
+        <dd>study participants whose raw recordings I turn into analysis-ready data, end to end</dd>
+      </div>
+      <div class="stat">
+        <dt>200+</dt>
+        <dd>recorded human decisions annotated and evaluated in Datavyu</dd>
+      </div>
+      <div class="stat">
+        <dt>−12%</dt>
+        <dd>operating costs after I sourced and negotiated 3 vendor partnerships</dd>
+      </div>
+      <div class="stat">
+        <dt>83%</dt>
+        <dd>faster banker deal task after I designed an agentic AI workflow at JPMorgan</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== CASE STUDY ===================== -->
+  <section class="section" id="case-study">
+    <div class="section-inner wide">
+      <div class="cs-header">
+        <p class="kicker">Case study · Sourcing data in a new domain</p>
+        <h2 class="display">Pilot before you scale</h2>
+        <p class="lede">Research priorities change fast, and many data requests arrive in domains nobody on the team has sourced before. When the first big batch is the first real test of a vendor, quality problems show up after the budget and the timeline are already spent.</p>
+      </div>
+
+      <div class="tldr">
+        <div class="tldr-item">
+          <span class="tldr-label">Problem</span>
+          <p>Open-ended asks go straight to whichever vendor the team knows best. Quality is judged on the full delivery, and what the team learned about a vendor or a domain lives in <em>someone's head and a Slack thread</em>, so the next new domain starts from zero.</p>
+        </div>
+        <div class="tldr-item">
+          <span class="tldr-label">Bet</span>
+          <p>Turn every request into a one-page brief with a small gold set, run the same paid pilot with two or three vendors, review the pilots side by side with the researcher, then scale with a split plan and keep a scorecard that carries over to the next domain.</p>
+        </div>
+        <div class="tldr-item">
+          <span class="tldr-label">How we'd know</span>
+          <p>More deliveries accepted on the first pass, faster time from request to a usable first batch, and lower cost per accepted item, while researchers spend less time explaining what they meant.</p>
+        </div>
+      </div>
+
+      <div class="cs-body">
+        <aside class="cs-toc" aria-label="Case study sections">
+          <ol>
+            <li><a href="#cs-context">Context</a></li>
+            <li><a href="#cs-problem">Problem &amp; users</a></li>
+            <li><a href="#cs-why-now">Why now</a></li>
+            <li><a href="#prototype">Solution &amp; prototype</a></li>
+            <li><a href="#cs-metrics">Metrics</a></li>
+            <li><a href="#cs-rollout">Rollout</a></li>
+            <li><a href="#cs-risks">Risks &amp; open questions</a></li>
+          </ol>
+        </aside>
+
+        <div class="cs-content">
+          <article class="cs-block" id="cs-context">
+            <span class="cs-num">01</span>
+            <h3>Context</h3>
+            <p>Thinking Machines is training frontier models and building Tinker so people can make models their own. The Data team helps researchers get the data they need for training and evaluation: understanding the request, finding the right vendors, experts, or sources, reviewing quality with researchers, and delivering on research timelines. The work changes with research priorities, and much of it involves vendors in other countries.</p>
+          </article>
+
+          <article class="cs-block" id="cs-problem">
+            <span class="cs-num">02</span>
+            <h3>Problem &amp; users</h3>
+            <p>Take a request like this: "We need a lot of hard chemistry reasoning data, ideally expert-written, for the next post-training run in about four weeks." It's a real need, but it isn't a spec yet. How hard is hard? How much is a lot? Does textbook-style content count? Each unanswered question becomes a guess that a vendor makes for us, and we discover the guesses when the first 1,000 items arrive.</p>
+
+            <div class="personas">
+              <div class="persona" style="--c: var(--primary)">
+                <span class="persona-role">Researcher</span>
+                <p class="persona-need">"I know good data when I see it. I just <em>don't have time</em> to write a 10-page spec."</p>
+                <p class="persona-pain">Pain: finds out a dataset is off when training results look wrong.</p>
+              </div>
+              <div class="persona" style="--c: var(--sky)">
+                <span class="persona-role">Data operations</span>
+                <p class="persona-need">"Three vendors say they can do chemistry. I can't tell which one actually can until I've paid for a full batch."</p>
+                <p class="persona-pain">Pain: picking vendors on reputation, not evidence.</p>
+              </div>
+              <div class="persona" style="--c: var(--amber)">
+                <span class="persona-role">Vendor team lead</span>
+                <p class="persona-need">"Give us examples of what good looks like, and tell us early when we're off."</p>
+                <p class="persona-pain">Pain: vague briefs, and feedback that arrives after the work is done.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="cs-block" id="cs-why-now">
+            <span class="cs-num">03</span>
+            <h3>Why now</h3>
+            <ul class="checks">
+              <li><strong>The valuable data is getting more specialized.</strong> Post-training and evaluation increasingly need expert judgment in narrow domains, where a generalist vendor's best guess isn't good enough.</li>
+              <li><strong>Priorities shift quickly.</strong> A small team can't afford a sourcing process that restarts from zero every time research moves into a new area.</li>
+              <li><strong>More vendors, more countries.</strong> Comparing vendors fairly, and handling contracts and compliance across borders, needs a light, repeatable structure.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROTOTYPE ===================== -->
+  <section class="section section-canvas" id="prototype">
+    <div class="section-inner wide">
+      <div class="cs-header">
+        <p class="kicker"><span class="cs-num inline">04</span> Solution &amp; interactive prototype</p>
+        <h2 class="display sm">From a vague ask to a scaled dataset</h2>
+        <p class="lede">Send the researcher's request, approve a vendor plan from the pilot results, then see the first scaled batch in quality review. Vendors are anonymized and all data is illustrative.</p>
+      </div>
+
+      <div class="proto" id="proto">
+        <div class="proto-tabs" role="tablist" aria-label="Prototype roles">
+          <button role="tab" class="proto-tab active" aria-selected="true" aria-controls="pane-req" id="tab-req" data-pane="req">
+            <span class="tab-dot" style="background: var(--primary)"></span>Researcher request
+          </button>
+          <button role="tab" class="proto-tab" aria-selected="false" aria-controls="pane-pilot" id="tab-pilot" data-pane="pilot">
+            <span class="tab-dot" style="background: var(--sky)"></span>Vendor pilot <span class="badge" id="gapBadge" hidden>1</span>
+          </button>
+          <button role="tab" class="proto-tab" aria-selected="false" aria-controls="pane-qa" id="tab-qa" data-pane="qa">
+            <span class="tab-dot" style="background: var(--amber)"></span>Quality review
+          </button>
+          <button class="proto-reset" id="protoReset" type="button">Reset</button>
+        </div>
+
+        <!-- Researcher request -->
+        <div class="proto-pane active" role="tabpanel" id="pane-req" aria-labelledby="tab-req">
+          <div class="app">
+            <div class="app-layers">
+              <p class="app-title">Data requests</p>
+              <ul>
+                <li class="layer"><span class="src-icon">✓</span> Code review evals</li>
+                <li class="layer"><span class="src-icon">◐</span> Multilingual dialogue</li>
+                <li class="layer selected" id="layerName"><span class="src-icon">○</span> Chemistry reasoning (draft)</li>
+              </ul>
+            </div>
+            <div class="app-canvas">
+              <div class="frame task">
+                <span class="frame-label">Brief · Chemistry reasoning</span>
+                <div class="sheet">
+                  <p class="ask"><b>What the researcher wrote</b>We need a lot of hard chemistry reasoning data, ideally expert-written, for the next post-training run in about 4 weeks.</p>
+                  <dl class="plan">
+                    <dt>Domain</dt><dd>Organic chemistry, graduate level</dd>
+                    <dt>Use</dt><dd>Post-training</dd>
+                    <dt>Volume</dt><dd>3,000 items</dd>
+                    <dt>Format</dt><dd>Problem, step-by-step solution, answer</dd>
+                    <dt>Quality bar</dt><dd id="planBar" class="tbd">To confirm</dd>
+                    <dt>Deadline</dt><dd>First 500 in 2 weeks</dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="app-props">
+              <p class="app-title">Brief</p>
+              <div class="prop"><span>Gold set</span><strong>50 items · written with researcher</strong></div>
+              <div class="prop"><span>Status</span><strong class="muted" id="propStatus">Draft</strong></div>
+              <p class="start-hint" id="startHint">Start here ↓</p>
+              <button class="action-btn" id="flagBtn" type="button">Send to Data team <kbd>⌘↵</kbd></button>
+
+              <div class="popover" id="popover" hidden>
+                <p class="pop-title">Anything vendors must know?</p>
+                <p class="pop-sub">Optional. Pick what matters most and it goes into the pilot brief.</p>
+                <div class="chips" id="reasonChips">
+                  <button type="button" class="chip" data-reason="Original work only">Original work only</button>
+                  <button type="button" class="chip" data-reason="Hardest subfields matter most">Hardest subfields matter most</button>
+                  <button type="button" class="chip" data-reason="Deadline is firm">Deadline is firm</button>
+                  <button type="button" class="chip" data-reason="Budget is tight">Budget is tight</button>
+                </div>
+                <div class="pop-actions">
+                  <button type="button" class="link-btn" id="skipBtn">Skip and send</button>
+                </div>
+              </div>
+
+              <p class="toast" id="toast" role="status" hidden></p>
+            </div>
+          </div>
+          <p class="proto-note"><strong>Design choice:</strong> the researcher writes one sentence and helps build a 50-item gold set; Data operations turns that into the brief. The researcher spends twenty minutes, not a day, and the gold set becomes the yardstick for every vendor.</p>
+        </div>
+
+        <!-- Vendor pilot -->
+        <div class="proto-pane" role="tabpanel" id="pane-pilot" aria-labelledby="tab-pilot" hidden>
+          <div class="owner wide-left">
+            <div class="owner-list">
+              <div class="owner-head">
+                <p class="app-title">Pilot · 50 gold items per vendor</p>
+                <span class="muted small">Paid pilot, 1 week</span>
+              </div>
+              <div class="pilot-wrap">
+                <table class="pilot">
+                  <thead><tr><th>Vendor</th><th>Agreement</th><th>Cost / item</th><th>Turnaround</th><th>Contract</th></tr></thead>
+                  <tbody>
+                    <tr><td>A · US expert network</td><td class="good">91%</td><td>$68</td><td>6 days</td><td class="good">Signed</td></tr>
+                    <tr class="pick" id="rowB"><td>B · Global marketplace</td><td class="mid">88%</td><td class="good">$31</td><td class="good">3 days</td><td class="good">Signed</td></tr>
+                    <tr><td>C · University partner</td><td class="good">95%</td><td class="bad">$120</td><td class="bad">12 days</td><td class="mid">Pending</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <ul class="issues" style="margin-top: 12px">
+                <li class="mid"><span>B errors on stereochemistry</span><span>2× A</span></li>
+                <li class="ok"><span>B covers all 5 subfields</span><span>5 / 5</span></li>
+                <li class="bad"><span>C can't start for 12 days</span><span>misses deadline</span></li>
+              </ul>
+            </div>
+            <div class="owner-detail" id="ownerDetail">
+              <p class="app-title">Recommendation</p>
+              <h4 id="gapTitle">Split the work</h4>
+              <p class="muted small" id="gapMeta">Based on 150 pilot items reviewed with the researcher</p>
+              <div class="insight">
+                <span class="insight-label">Why</span>
+                <p>B is fast, covers every subfield, and costs half as much, but makes twice as many errors on stereochemistry. A is strongest there.</p>
+              </div>
+              <div class="insight ai">
+                <span class="insight-label">✦ Draft plan</span>
+                <p>Vendor B for <strong>80%</strong> of items, vendor A for the <strong>stereochemistry 20%</strong>. Estimated $124K, first 500 items in 9 days. Revisit C for a later eval set.</p>
+              </div>
+              <div class="owner-actions">
+                <button type="button" class="btn btn-primary small" id="publishBtn">Approve plan</button>
+                <button type="button" class="btn btn-ghost small">Compare costs</button>
+              </div>
+              <p class="toast inline" id="publishToast" role="status" hidden></p>
+            </div>
+          </div>
+          <p class="proto-note"><strong>Design choice:</strong> every vendor does the same paid pilot against the same gold set, so the choice rests on evidence rather than reputation. Splitting the work plays to each vendor's strength instead of forcing one vendor to be good at everything.</p>
+        </div>
+
+        <!-- Quality review -->
+        <div class="proto-pane" role="tabpanel" id="pane-qa" aria-labelledby="tab-qa" hidden>
+          <div class="dev">
+            <div class="dev-inspect">
+              <p class="app-title">First batch · 500 items · 5% sampled</p>
+              <div class="dev-warn" id="devWarn">
+                <strong id="devWarnTitle">Waiting on plan approval.</strong> <span id="devWarnText">Approve a vendor plan to start the first batch.</span>
+              </div>
+              <ul class="issues" id="issueList">
+                <li class="mid"><span>Skipped reasoning step</span><span id="iss1">–</span></li>
+                <li class="mid"><span>Formatting</span><span id="iss2">–</span></li>
+                <li class="bad"><span>Wrong final answer</span><span id="iss3">–</span></li>
+                <li class="bad"><span>Overlaps a textbook</span><span id="iss4">–</span></li>
+              </ul>
+              <div class="prop"><span>Accepted on first pass</span><strong class="muted" id="devAccept">–</strong></div>
+              <button class="action-btn" id="shareBtn" type="button" disabled>Send feedback to vendors</button>
+              <p class="toast" id="shareToast" role="status" hidden></p>
+            </div>
+            <div class="dev-code">
+              <div class="code-head"><span>Project spec · YAML</span><button type="button" class="link-btn" id="copyBtn">Copy</button></div>
+<pre><code id="codeSnippet"><span class="at">project</span>: <span class="st">orgchem-reasoning-v1</span>
+<span class="at">use</span>: <span class="st">post_training</span>
+<span class="at">volume</span>: <span class="tk">3000</span>
+<span class="at">format</span>: [<span class="st">problem</span>, <span class="st">steps</span>, <span class="st">final_answer</span>]
+<span class="at">quality_bar</span>:
+  <span class="at">gold_agreement</span>: <span class="st">"&gt;= 0.90"</span>
+  <span class="at">original_work</span>: <span class="tk" id="specOriginal">tbd</span>   <span class="cm"># textbook overlap check</span>
+<span class="at">review</span>:
+  <span class="at">sample_rate</span>: <span class="tk">0.05</span>
+  <span class="at">reviewers</span>: [<span class="st">researcher</span>, <span class="st">data_ops</span>]
+<span class="at">vendors</span>: <span id="specVendors"><span class="st">pending_pilot</span></span></code></pre>
+            </div>
+          </div>
+          <p class="proto-note"><strong>Design choice:</strong> the researcher and Data operations review the same 5% sample, tagged by issue type, and vendors get feedback on the first 500 items instead of the last. The spec carries every decision so the next project in this domain starts from it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CASE STUDY (cont.) ===================== -->
+  <section class="section" id="cs-rest">
+    <div class="section-inner wide">
+      <div class="cs-body">
+        <div class="cs-toc spacer" aria-hidden="true"></div>
+        <div class="cs-content">
+          <article class="cs-block" id="cs-metrics">
+            <span class="cs-num">05</span>
+            <h3>Metrics</h3>
+            <p class="muted">Hypotheses I'd validate with real baselines before setting targets.</p>
+            <div class="metrics">
+              <div class="metric north">
+                <span class="metric-type">North star</span>
+                <p class="metric-name">First-pass acceptance rate</p>
+                <p class="metric-desc">Share of delivered items researchers accept without a redo. If pilots pick the right vendors and the brief is clear, this rises.</p>
+              </div>
+              <div class="metric">
+                <span class="metric-type">Input</span>
+                <p class="metric-name">Request → first usable batch</p>
+                <p class="metric-desc">Days from a researcher's first message to a batch they'd train on.</p>
+              </div>
+              <div class="metric">
+                <span class="metric-type">Input</span>
+                <p class="metric-name">Pilot-to-scale prediction</p>
+                <p class="metric-desc">How closely pilot agreement predicts quality at full volume. Tells us whether 50 items is enough.</p>
+              </div>
+              <div class="metric">
+                <span class="metric-type">Outcome</span>
+                <p class="metric-name">Cost per accepted item</p>
+                <p class="metric-desc">Total spend divided by accepted items, including pilots and redo work.</p>
+              </div>
+              <div class="metric guard">
+                <span class="metric-type">Guardrail</span>
+                <p class="metric-name">Researcher time and speed</p>
+                <p class="metric-desc">Researcher hours per project and total time to delivery. The process fails if pilots add more delay than they save.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="cs-block" id="cs-rollout">
+            <span class="cs-num">06</span>
+            <h3>Rollout</h3>
+            <ol class="phases">
+              <li>
+                <span class="phase-tag">Phase 1 · One project</span>
+                <p><strong>Brief, gold set, and pilot on the next new-domain request.</strong> Run it by hand in a spreadsheet and measure time, cost, and first-pass acceptance against the last comparable project.</p>
+              </li>
+              <li>
+                <span class="phase-tag">Phase 2 · Make it repeatable</span>
+                <p><strong>Templates and a vendor scorecard.</strong> Turn the brief and pilot review into templates, and keep a shared scorecard of every vendor's pilot results by domain, cost, speed, and contract status.</p>
+              </li>
+              <li>
+                <span class="phase-tag">Phase 3 · Automate the routine</span>
+                <p><strong>Light tooling where judgment isn't needed.</strong> Auto-score pilots against the gold set, check for textbook overlap, and draft vendor feedback by issue type, while people keep reviewing the samples.</p>
+              </li>
+            </ol>
+          </article>
+
+          <article class="cs-block" id="cs-risks">
+            <span class="cs-num">07</span>
+            <h3>Risks &amp; open questions</h3>
+            <div class="two-col">
+              <div>
+                <h4 class="mini">Tradeoffs I'd watch</h4>
+                <ul class="plain">
+                  <li><strong>Pilots slow urgent work.</strong> Skip or shrink the pilot for domains where a vendor already has a strong scorecard.</li>
+                  <li><strong>A small gold set misleads.</strong> Track how well pilot results predict full-batch quality, and grow the gold set when they don't.</li>
+                  <li><strong>Vendors tune to the gold set.</strong> Keep gold items hidden and refresh them between projects.</li>
+                  <li><strong>Cross-border contracts.</strong> Work with legal early so contract status never blocks a vendor that won the pilot.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="mini">Questions I'd bring to the team</h4>
+                <ul class="plain">
+                  <li>Which recent projects needed the most redo work, and why?</li>
+                  <li>How do researchers prefer to define "good" today: examples, rubrics, or review sessions?</li>
+                  <li>What's the right pilot size for pre-training data versus post-training or evals?</li>
+                  <li>Which data types could come from unusual sources instead of vendors at all?</li>
+                </ul>
+              </div>
+            </div>
+            <p class="disclaimer">Built from Thinking Machines' public description of this role and my own assumptions. Vendors are anonymized and figures are illustrative. I'd love to pressure-test this with the people doing the work every day.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHY THINKING MACHINES ===================== -->
+  <section class="section section-alt" id="why-tml">
+    <div class="section-inner">
+      <p class="kicker">Why Thinking Machines</p>
+      <h2 class="display sm">I like work where nobody has written the playbook yet.</h2>
+      <div class="prose">
+        <p>In UT's Vision, Action, and Cognition Lab, I work directly with researchers to turn loosely defined questions into data they can use. I own the pipeline for a 150-participant study, annotate and review 200+ recorded human decisions, and look closely at the data instead of trusting the process to catch problems. At a small business, I sourced and vetted vendors for 3 partnerships and negotiated pricing that cut operating costs 12%.</p>
+        <p>Most of what I've built, I built as I went: a franchisable board model now piloting at two new universities, an LLM-powered assistant grounded in 1,000+ documents, and an agentic AI workflow at JPMorgan. I speak Kannada, Hindi, and American Sign Language, studied abroad in Berlin, and enjoy working across cultures. A data team helping researchers build AI that extends human judgment is where I want to put all of that to work.</p>
+      </div>
+      <div class="fit">
+        <div class="fit-row"><span class="fit-ask">Turn open-ended requests into a concrete plan</span><span class="fit-me">Partner with lab researchers to turn research questions into repeatable workflows; wrote 20+ Jira tickets weekly with specs and success criteria at JPMorgan.</span></div>
+        <div class="fit-row"><span class="fit-ask">Find and manage the right vendors</span><span class="fit-me">Sourced and vetted vendors for 3 partnerships and negotiated pricing that cut operating costs 12%; coordinated 300+ client setups across teams.</span></div>
+        <div class="fit-row"><span class="fit-ask">Inspect data quality closely</span><span class="fit-me">Annotate and evaluate 200+ recorded human decisions; own the data pipeline for a 150-participant study; reviewed and structured data from 300+ deals.</span></div>
+        <div class="fit-row"><span class="fit-ask">Build processes and simple tooling as you go</span><span class="fit-me">Built a reusable Python pipeline, an LLM-powered knowledge assistant, and a franchisable operating model for a 300+ member organization.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section class="section" id="experience">
+    <div class="section-inner">
+      <p class="kicker">Experience</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-meta"><span>2024 – Now</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>UT Vision, Action &amp; Cognition Lab</h3>
+            <p class="tl-role">Data Analysis Research Assistant</p>
+            <p>Own the end-to-end data pipeline for a 150-participant eye-tracking study, turning raw recordings into clean, analysis-ready datasets. Annotate gaze and body-movement recordings in Datavyu, evaluating 200+ human decisions, and partner with researchers to turn research questions into repeatable analysis workflows and visuals.</p>
+            <div class="tags"><span>Research data</span><span>Annotation</span><span>Python</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2025 – 2026</span><span>New York &amp; Plano</span></div>
+          <div class="tl-body">
+            <h3>JPMorgan Chase</h3>
+            <p class="tl-role">Technical Product Management &amp; Strategy · Product Management Summer Analyst</p>
+            <p>Two summers on two teams. In New York, I designed an agentic AI workflow that cut a manual banker deal task from ~2 hours to 20 minutes (83% faster), reviewed and structured data from 300+ deals, and wrote 20+ Jira tickets a week with specs and success criteria. In Plano, I coordinated 300+ client setups and led a 4-team onboarding initiative that cut setup time 25%.</p>
+            <div class="tags"><span>Agentic AI</span><span>Requirements</span><span>Data quality</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2024</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>Viva Day Spa + Med Spa</h3>
+            <p class="tl-role">Analytics Intern</p>
+            <p>Led vendor sourcing and purchasing evaluations for 3 partnerships, negotiating pricing that cut operating costs 12%. Researched 14 Dallas neighborhoods to inform expansion, and led rollout of a new booking platform for 35 staff.</p>
+            <div class="tags"><span>Vendor sourcing</span><span>Negotiation</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2023 – Now</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>Kendra Scott Women's Entrepreneurial &amp; Leadership Institute</h3>
+            <p class="tl-role">President, Student Board · previously Senior Program Management Associate</p>
+            <p>Designing a replicable 300+ member board model for other colleges, analyzing member feedback to launch a consulting offering (NPS +20), and building an LLM-powered knowledge assistant grounded in 1,000+ board documents. Earlier, ran programs for 2,000+ attendees with external sponsors and grew attendance 120%.</p>
+            <div class="tags"><span>Building process</span><span>LLM tools</span><span>Operations</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2024</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>ShinDig</h3>
+            <p class="tl-role">Product Director</p>
+            <p>Took a mobile app for deepening 500+ student relationships from Figma prototypes to an MVP in React Native and Firebase, using user interviews to prioritize features.</p>
+            <div class="tags"><span>User research</span><span>MVP</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta"><span>2024 – 2025</span><span>Austin</span></div>
+          <div class="tl-body">
+            <h3>Empowering Women Out of Prison</h3>
+            <p class="tl-role">Business Plan Advisor</p>
+            <p>Built an early-stage startup's business plan with research across 3 industries, and built a skill-building curriculum from mentees' feedback that improved post-release employment opportunities by 20%.</p>
+            <div class="tags"><span>New domains</span><span>Curriculum design</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT + SKILLS ===================== -->
+  <section class="section section-alt" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="kicker">About</p>
+          <div class="prose">
+            <p>I'm a dual-degree student at UT Austin (BBA Finance, BS Informatics in Data Science, May 2027, 3.99 GPA). I keep ending up in roles where someone has a loosely defined need and my job is to figure out what they actually mean, find the people or data to meet it, and check the result closely.</p>
+            <p>I'm happiest when the work is hands-on, the priorities move, and there's room to build the process as I go.</p>
+          </div>
+          <p class="honors">2025 McCombs Distinguished Scholar · 2025 University Honors · 2026 President's Student Employee of the Year Nominee</p>
+        </div>
+        <div class="skills">
+          <div class="skills-group">
+            <h4>Data &amp; operations</h4>
+            <div class="pills"><span>Vendor sourcing</span><span>Data quality review</span><span>Annotation</span><span>Requirements gathering</span><span>Evaluation frameworks</span></div>
+          </div>
+          <div class="skills-group">
+            <h4>Technical</h4>
+            <div class="pills"><span>Python</span><span>SQL</span><span>R</span><span>LLM APIs</span><span>Agentic AI</span><span>Datavyu</span><span>Git</span></div>
+          </div>
+          <div class="skills-group">
+            <h4>Coursework</h4>
+            <div class="pills"><span>Machine Learning &amp; AI</span><span>Natural Language Processing</span><span>Statistics</span></div>
+          </div>
+          <div class="skills-group">
+            <h4>Languages</h4>
+            <div class="pills"><span>Kannada</span><span>Hindi</span><span>American Sign Language</span><span>Spanish (basic)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section contact" id="contact">
+    <div class="section-inner contact-inner">
+      <p class="kicker">Contact</p>
+      <h2 class="display sm">Let's talk data.</h2>
+      <p class="lede center">I'd love to walk through this case study, or hear where I got it wrong.</p>
+      <div class="contact-links">
+        <a href="mailto:varsha.shashidhar2023@gmail.com" class="contact-link">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">varsha.shashidhar2023@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/varsha-shashidhar" class="contact-link" target="_blank" rel="noopener">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">linkedin.com/in/varsha-shashidhar</span>
+        </a>
+        <a href="assets/Varsha_Shashidhar_Resume.pdf" class="contact-link" download>
+          <span class="contact-label">Resume</span>
+          <span class="contact-value">Download PDF</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Varsha Shashidhar · Built for the Data team role at Thinking Machines · © 2026</p>
+  <p class="footer-note">An independent application project. Not affiliated with or endorsed by Thinking Machines.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
