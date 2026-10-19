@@ -6,9 +6,8 @@
 <title>Varsha Shashidhar, Product Operations</title>
 <meta name="description" content="Varsha Shashidhar: application portfolio for Plaid's Product Operations Specialist role, with a Voice-of-Customer and launch-readiness case study and interactive prototype.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -38,9 +37,9 @@
     <h1>I turn <em>frontline signal</em> into <em>launch-ready</em> products.</h1>
     <p class="hero-sub">I'm Varsha Shashidhar, a Finance and Data Science student at UT Austin. At JPMorgan I designed an agentic fintech workflow, triaged issues across 300+ deals, and rebuilt workflows for compliance. Below is how I'd run a Voice-of-Customer and launch-readiness loop for a Plaid product, with a prototype you can click through.</p>
     <div class="hero-cta">
-      <a href="#case-study" class="btn btn-primary">Read the case study <span aria-hidden="true">→</span></a>
+      <a href="#case-study" class="btn btn-primary">Read the case study</a>
       <a href="#prototype" class="btn btn-secondary">Try the prototype</a>
-      <a href="https://www.linkedin.com/in/varsha-shashidhar" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://www.linkedin.com/in/varsha-shashidhar" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn <span class="chev" aria-hidden="true">›</span></a>
     </div>
 
     <dl class="stats">
@@ -69,9 +68,9 @@
   <!-- ===================== CASE STUDY ===================== -->
   <section class="section" id="case-study">
     <div class="section-inner wide">
-      <div class="cs-header">
+      <div class="cs-header centered">
         <p class="kicker">Case study · Product operations</p>
-        <h2 class="display">From ticket to roadmap</h2>
+        <h2 class="display">From ticket to roadmap. <span class="dim">Every question makes the next launch smoother.</span></h2>
         <p class="lede">Every support conversation about a new product holds a signal: a missing doc, a confusing API response, a tooling gap. Most of it gets resolved one ticket at a time and then disappears. What if every ticket made the next launch smoother?</p>
       </div>
 
@@ -152,9 +151,9 @@
   <!-- ===================== PROTOTYPE ===================== -->
   <section class="section section-canvas" id="prototype">
     <div class="section-inner wide">
-      <div class="cs-header">
-        <p class="kicker"><span class="cs-num inline">04</span> Solution &amp; interactive prototype</p>
-        <h2 class="display sm">One ticket, three views</h2>
+      <div class="cs-header centered">
+        <p class="kicker"><span class="cs-num inline">04</span> · Solution &amp; interactive prototype</p>
+        <h2 class="display">One ticket. <span class="dim">Three views.</span></h2>
         <p class="lede">Follow a single customer question through the loop. Resolve it as the support engineer, then switch roles to see how Product Ops quantifies the pattern and how the PM gets a brief and a readiness checklist. All data shown is illustrative.</p>
       </div>
 
@@ -231,15 +230,21 @@
                 </div>
               </div>
 
-              <div class="runbook" id="runbook" hidden>
-                <span class="insight-label">Suggested runbook</span>
-                <ol id="runbookSteps"></ol>
-              </div>
-
               <p class="toast" id="toast" role="status" hidden></p>
             </div>
+
+            <section class="sheet" id="runbook" aria-label="Suggested runbook" hidden>
+              <button type="button" class="sheet-handle" id="sheetHandle" aria-expanded="true" aria-controls="sheetBody">
+                <span class="sheet-grabber" aria-hidden="true"></span>
+                <span class="sheet-title"><strong>Suggested runbook</strong><span id="sheetTag"></span></span>
+              </button>
+              <div class="sheet-body" id="sheetBody">
+                <ol id="runbookSteps"></ol>
+                <p class="sheet-hint">Drag or flick the handle. Tap to expand or collapse.</p>
+              </div>
+            </section>
           </div>
-          <p class="proto-note"><strong>Design choice:</strong> tagging happens at resolution, in one click, and it pays the engineer back immediately with the matching runbook. Structure is a by-product of doing the job, not an extra form.</p>
+          <p class="proto-note"><strong>Design choice:</strong> tagging happens at resolution, in one click, and it pays the engineer back immediately: the matching runbook rises as a sheet they can flick away or pull up. Structure is a by-product of doing the job, not an extra form.</p>
         </div>
 
         <!-- Product Ops -->
@@ -407,7 +412,7 @@
   <section class="section section-alt" id="why-plaid">
     <div class="section-inner">
       <p class="kicker">Why Plaid</p>
-      <h2 class="display sm">I've been on the inside of the systems Plaid connects to.</h2>
+      <h2 class="display sm">I've been on the inside of the systems Plaid connects to. <span class="dim">Now I want to help build the bridge.</span></h2>
       <div class="prose">
         <p>At JPMorgan I worked on a deal platform where every workflow change had to clear compliance and every new feature had to be learned by bankers who were already busy. The features that stuck weren't the cleverest ones; they were the ones that arrived with the right docs, the right training, and an answer to "why did it do that?" I spent my summers in exactly that seam: triaging issues across 300+ deals, writing specs and acceptance criteria with engineers, and restructuring workflows when policy changed.</p>
         <p>Plaid is the layer that lets developers build on top of institutions like that one, and its mission, unlocking financial freedom for everyone, is the reason I study finance and data science together. Product Operations is where I can do what I'm best at: listen closely to the people using a product, prove what they need with data, and make sure the next launch is smoother than the last.</p>
@@ -529,7 +534,7 @@
   <section class="section contact" id="contact">
     <div class="section-inner contact-inner">
       <p class="kicker">Contact</p>
-      <h2 class="display sm">Let's talk launches.</h2>
+      <h2 class="display">Let's talk launches.</h2>
       <p class="lede center">I'd love to walk through this case study, or hear where I got it wrong.</p>
       <div class="contact-links">
         <a href="mailto:varsha.shashidhar2023@gmail.com" class="contact-link">

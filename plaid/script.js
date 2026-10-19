@@ -277,6 +277,131 @@ function renderReady() {
   gate.textContent = pass ? 'GA gate: ready to launch ✓' : `GA gate: blocked on ${readinessItems.length - n} open item${readinessItems.length - n === 1 ? '' : 's'}`;
 }
 
+
+// ---------- Runbook sheet: gesture-driven, spring-animated ----------
+// Principles from Apple's "Designing Fluid Interfaces": track the pointer 1:1,
+// hand the release velocity to a spring, project momentum to choose a detent,
+// rubber-band past the edges, and let any motion be grabbed mid-flight.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const sheetEl = $('runbook');
+const sheetHandle = $('sheetHandle');
+const PEEK = 58; // visible height when collapsed (the handle row)
+
+const sheet = { y: 0, v: 0, raf: 0, detent: 'open' };
+
+function sheetHeight() { return sheetEl.offsetHeight; }
+function detents() { return { open: 0, peek: Math.max(0, sheetHeight() - PEEK) }; }
+function applySheet() { sheetEl.style.transform = `translate3d(0, ${sheet.y}px, 0)`; }
+
+// Spring with Apple's designer-friendly parameters: damping ratio + response (s)
+function springTo(target, { damping = 1, response = 0.4, velocity = 0 } = {}) {
+  cancelAnimationFrame(sheet.raf);
+  if (reduceMotion.matches) { sheet.y = target; sheet.v = 0; applySheet(); return; }
+  const k = Math.pow((2 * Math.PI) / response, 2);
+  const c = (4 * Math.PI * damping) / response;
+  sheet.v = velocity;
+  let last = performance.now();
+  const step = (now) => {
+    let dt = Math.min(0.064, (now - last) / 1000);
+    last = now;
+    const n = Math.ceil(dt / 0.004);   // fixed sub-steps keep it stable
+    const h = dt / n;
+    for (let i = 0; i < n; i++) {
+      const a = -k * (sheet.y - target) - c * sheet.v;
+      sheet.v += a * h;
+      sheet.y += sheet.v * h;
+    }
+    if (Math.abs(sheet.v) < 4 && Math.abs(sheet.y - target) < 0.4) {
+      sheet.y = target; sheet.v = 0; applySheet(); return;
+    }
+    applySheet();
+    sheet.raf = requestAnimationFrame(step);
+  };
+  sheet.raf = requestAnimationFrame(step);
+}
+
+// Where a flick would come to rest (Apple's deceleration projection)
+function project(velocity, rate = 0.998) { return (velocity / 1000) * rate / (1 - rate); }
+
+// Soft boundary: the further past the edge, the less it follows
+function rubberband(overshoot, dimension, constant = 0.55) {
+  return (overshoot * dimension * constant) / (dimension + constant * Math.abs(overshoot));
+}
+
+function setDetent(name, opts) {
+  sheet.detent = name;
+  sheetHandle.setAttribute('aria-expanded', String(name === 'open'));
+  springTo(detents()[name], opts);
+}
+
+function showSheet() {
+  sheetEl.hidden = false;
+  sheet.y = sheetHeight() + 24;   // start just below, rise from where it will return to
+  applySheet();
+  // On a phone the sheet would cover the confirmation, so it rises to its peek and invites a pull
+  const narrow = window.matchMedia('(max-width: 734px)').matches;
+  setDetent(narrow ? 'peek' : 'open', { damping: 1, response: 0.4 });
+}
+
+let drag = null;
+let suppressClick = false;
+
+sheetHandle.addEventListener('pointerdown', (e) => {
+  if (e.button !== 0) return;
+  cancelAnimationFrame(sheet.raf);       // grab it mid-flight, from its live position
+  sheetHandle.setPointerCapture(e.pointerId);
+  drag = { startY: e.clientY, startSheet: sheet.y, moved: false, history: [{ t: e.timeStamp, y: e.clientY }] };
+});
+
+sheetHandle.addEventListener('pointermove', (e) => {
+  if (!drag) return;
+  const dy = e.clientY - drag.startY;
+  if (!drag.moved && Math.abs(dy) < 6) return;   // small hysteresis before committing to a drag
+  drag.moved = true;
+  const { open, peek } = detents();
+  let y = drag.startSheet + dy;
+  if (y < open) y = open - rubberband(open - y, sheetHeight());
+  else if (y > peek) y = peek + rubberband(y - peek, sheetHeight());
+  sheet.y = y;
+  applySheet();
+  drag.history.push({ t: e.timeStamp, y: e.clientY });
+  if (drag.history.length > 6) drag.history.shift();
+});
+
+function endDrag(e) {
+  if (!drag) return;
+  const d = drag; drag = null;
+  if (!d.moved) {
+    // A tap that never moved: settle back if we interrupted a motion; the click handler toggles
+    springTo(detents()[sheet.detent]);
+    return;
+  }
+  suppressClick = true;
+  const h = d.history;
+  const a = h[0], b = h[h.length - 1];
+  const velocity = b.t > a.t ? ((b.y - a.y) / (b.t - a.t)) * 1000 : 0; // px/s
+  const projected = sheet.y + project(velocity);
+  const { open, peek } = detents();
+  const name = Math.abs(projected - open) <= Math.abs(projected - peek) ? 'open' : 'peek';
+  // A flick carried momentum, so a touch of bounce is earned here (damping 0.8, drawer values)
+  setDetent(name, { damping: 0.8, response: 0.3, velocity });
+}
+sheetHandle.addEventListener('pointerup', endDrag);
+sheetHandle.addEventListener('pointercancel', endDrag);
+
+sheetHandle.addEventListener('click', () => {
+  if (suppressClick) { suppressClick = false; return; }
+  setDetent(sheet.detent === 'open' ? 'peek' : 'open', { damping: 1, response: 0.4 });
+});
+
+// Keep the sheet on its detent if the layout changes size (not when it first appears)
+let lastSheetH = 0;
+new ResizeObserver(() => {
+  const h = sheetEl.hidden ? 0 : sheetHeight();
+  if (lastSheetH && h && h !== lastSheetH && !drag) { cancelAnimationFrame(sheet.raf); sheet.y = detents()[sheet.detent]; applySheet(); }
+  lastSheetH = h;
+}).observe(sheetEl);
+
 // Support engineer flow
 const tagBtn = $('tagBtn');
 const popover = $('popover');
@@ -303,7 +428,8 @@ function doTag(reason) {
     $('queueTag').textContent = reason;
     $('queueTag').hidden = false;
     $('runbookSteps').innerHTML = p.runbook.map((s) => `<li>${s}</li>`).join('');
-    $('runbook').hidden = false;
+    $('sheetTag').textContent = reason;
+    showSheet();
     $('propEscalate').textContent = 'No, runbook covers it';
     toast.textContent = `Tagged "${reason}". Ticket linked to the Signal VoC dashboard.`;
     opsBadge.hidden = false;
@@ -342,7 +468,8 @@ $('protoReset').addEventListener('click', () => {
   $('propTag').classList.add('muted');
   $('propEscalate').textContent = 'Not yet';
   $('queueTag').hidden = true;
-  $('runbook').hidden = true;
+  cancelAnimationFrame(sheet.raf);
+  sheetEl.hidden = true;
   opsBadge.hidden = true;
   pmBadge.hidden = true;
   sqlBlock.hidden = true;
