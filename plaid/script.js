@@ -14,11 +14,13 @@ navLinks.querySelectorAll('a').forEach((link) => {
   });
 });
 
-// ---------- Scroll progress ----------
+// ---------- Scroll progress + scroll edge ----------
 const progress = document.getElementById('progress');
+const nav = document.getElementById('nav');
 const onScroll = () => {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+  nav.classList.toggle('scrolled', window.scrollY > 4);
 };
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
@@ -60,7 +62,28 @@ const panes = {
 const opsBadge = document.getElementById('opsBadge');
 const pmBadge = document.getElementById('pmBadge');
 
+// One indicator glides between tabs; CSS transitions retarget from the live value if interrupted
+const segIndicator = document.createElement('span');
+segIndicator.className = 'seg-indicator instant';
+segIndicator.setAttribute('aria-hidden', 'true');
+document.querySelector('.proto-tabs').prepend(segIndicator);
+
+function moveIndicator(instant) {
+  const active = tabs.find((t) => t.classList.contains('active'));
+  segIndicator.classList.toggle('instant', !!instant);
+  segIndicator.style.setProperty('--x', `${active.offsetLeft}px`);
+  segIndicator.style.setProperty('--y', `${active.offsetTop}px`);
+  segIndicator.style.width = `${active.offsetWidth}px`;
+  segIndicator.style.height = `${active.offsetHeight}px`;
+}
+new ResizeObserver(() => moveIndicator(true)).observe(document.querySelector('.proto-tabs'));
+
+let currentTab = 'support';
 function selectTab(name) {
+  const order = Object.keys(panes);
+  const dir = order.indexOf(name) >= order.indexOf(currentTab) ? 'enter-right' : 'enter-left';
+  const changed = name !== currentTab;
+  currentTab = name;
   tabs.forEach((t) => {
     const on = t.dataset.pane === name;
     t.classList.toggle('active', on);
@@ -70,9 +93,13 @@ function selectTab(name) {
   Object.entries(panes).forEach(([key, pane]) => {
     pane.hidden = key !== name;
     pane.classList.toggle('active', key === name);
+    pane.classList.remove('enter-right', 'enter-left');
+    if (key === name && changed) { void pane.offsetWidth; pane.classList.add(dir); }
   });
+  moveIndicator(false);
   if (name === 'ops') opsBadge.hidden = true;
   if (name === 'pm') pmBadge.hidden = true;
+  moveIndicator(false);
 }
 
 tabs.forEach((tab, i) => {
@@ -331,3 +358,5 @@ $('protoReset').addEventListener('click', () => {
 renderPains();
 renderDetail();
 renderReady();
+moveIndicator(true);
+document.fonts && document.fonts.ready.then(() => moveIndicator(true));
